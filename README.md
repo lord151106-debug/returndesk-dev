@@ -6,13 +6,14 @@ A full-stack returns desk application built for the Frido Software Developer Int
 
 ReturnDesk helps support agents create, find, review, resolve, and track customer return or replacement requests. The goal is a small, reliable product whose business rules are enforced by the server—not only by the UI.
 
-## Planned stack
+## Stack
 
 - **Frontend:** Next.js App Router, React, TypeScript, Tailwind CSS
 - **API:** Next.js Route Handlers running on Node.js
 - **Database:** PostgreSQL
 - **Data access:** Prisma ORM
-- **Validation and testing:** explicit request validation and automated tests (tooling to be chosen during implementation)
+- **Validation:** Zod
+- **Testing:** automated unit and API tests will be added with the relevant features
 
 ## Core workflow
 
@@ -35,18 +36,6 @@ ReturnDesk helps support agents create, find, review, resolve, and track custome
 - Only Open or Rejected requests may be removed from the active desk; removal must not destroy the underlying record.
 - Invalid operations must return appropriate HTTP status codes and machine-readable error responses.
 
-The exact schema and edge-case handling will be implemented against the assessment PDF, including database-level safeguards for concurrent requests.
-
-## Planned implementation sequence
-
-1. Project foundation and data model
-2. Database migration and seed data
-3. Request API and server-side business rules
-4. Automated API and business-rule tests
-5. Responsive request desk UI
-6. Integration and end-to-end verification
-7. Deployment, setup instructions, and final quality checks
-
 ## Development principles
 
 - Keep business rules in a testable server-side layer.
@@ -56,10 +45,34 @@ The exact schema and edge-case handling will be implemented against the assessme
 - Never commit credentials. Configure database URLs and other secrets via environment variables.
 - Record genuine, meaningful implementation milestones in Git history.
 
-## Status
+## Current status
 
-**Planning / initial repository setup.** Implementation and test status will be documented as the project progresses; no feature should be considered complete until it is implemented and verified.
+**Milestone 1 — Application foundation in progress.** The initial Next.js app shell, TypeScript and Tailwind configuration, and landing page are in the `feat/app-foundation` branch. The request workflow, API, database schema, and tests are not implemented yet. They must not be considered complete until implemented and verified.
 
 ## Local development
 
-The setup instructions will be expanded once the initial app and database configuration are committed. Do not commit your local `.env` file.
+Requirements: Node.js 20.9 or newer and npm.
+
+Clone the development repository and check out the foundation branch:
+
+```bash
+git clone https://github.com/lord151106-debug/returndesk-dev.git
+cd returndesk-dev
+git checkout feat/app-foundation
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+Run the available quality checks:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+These checks should be run locally after dependencies are installed. They have not been reported as passing from the repository-writing environment.
+
+Database configuration will be added in the next milestone. When it is needed, copy `.env.example` to `.env` and use your own PostgreSQL connection string. Never commit `.env` or real credentials.
