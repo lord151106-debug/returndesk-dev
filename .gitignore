@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+build/
+
+# production
+dist/
+
+# local environment files
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# test coverage
+coverage/
+
+# Prisma generated artifacts (if customized)
